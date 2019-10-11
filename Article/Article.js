@@ -103,12 +103,65 @@ const data = [
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+ /* Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: return the entire component.
-
+  
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article. */
 
-*/
+ 
+  <div class="article">
+     <h2>{title of the article}</h2>
+     <p class="date">{date of the article}</p>
+ 
+     <p></p>
+     <p></p>
+     <p></p>
+
+     <span class='expandButton'></span>
+   </div>
+
+
+
+function panelCreator(title, content) {
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const firstParagraph = document.createElement('p');
+  const secondParagraph = document.createElement('p');
+  const thirdParagraph = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+    
+  article.classList.add('article');
+  title.classList.add('title');
+  date.classList.add('date');
+  firstParagraph.classList.add('first-paragraph');
+  secondParagraph.classList.add('second-paragraph');
+  thirdParagraph.classList.add('third-paragraph')
+  expandButton.classList.add('expand-button')
+  
+  expandButton.addEventListener('click', () => {
+    buttonOpen.classList.toggle('article-open');
+    buttonClose.classList.toggle('article-close');
+    
+    expandButton.classList.toggle('toggle-on');
+  });
+  
+  panel.appendChild(panelBar);
+  panel.appendChild(panelContent);
+  panelBar.appendChild(panelTitle);
+  panelBar.appendChild(buttonPanel);
+  buttonPanel.appendChild(buttonOpen);
+  buttonPanel.appendChild(buttonClose);
+  
+  return panel;
+}
+
+const accordion = document.querySelector('.accordion');
+
+Data.forEach((data) => {
+  accordion.appendChild(panelCreator(data.title, data.content));
+});
